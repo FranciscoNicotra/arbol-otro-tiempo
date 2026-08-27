@@ -1,0 +1,17 @@
+{
+  "name": "Otro Tiempo · Árbol genealógico",
+  "short_name": "Otro Tiempo",
+  "description": "Armá y compartí el árbol genealógico de tu familia, con detección automática de dobles y yacientes.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFF8E8",
+  "theme_color": "#073B5C",
+  "lang": "es",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
