@@ -44,8 +44,8 @@ a{color:var(--azul-nav);}
 #app{display:flex;flex-direction:column;height:100vh;}
 
 header{
-  display:flex;align-items:center;gap:16px;
-  padding:10px 20px;
+  display:flex;align-items:center;gap:18px;
+  padding:9px 20px;
   background:var(--azul-oceano);
   color:var(--marfil);
   box-shadow:var(--sombra);
@@ -65,7 +65,7 @@ header{
   border:1px solid rgba(255,248,232,0.35);
   background:rgba(255,248,232,0.06);
   color:var(--marfil);
-  padding:8px 14px;border-radius:8px;font-size:13px;font-weight:500;
+  padding:7px 13px;border-radius:8px;font-size:12.5px;font-weight:500;
   display:flex;align-items:center;gap:6px;
   transition:background .15s, transform .1s;
   white-space:nowrap;
@@ -80,6 +80,25 @@ header{
 .btn.danger-light{color:#a3423c;border-color:#e3bcb4 !important;}
 .btn.danger-light:hover{background:#fbeae7;}
 .btn.active{background:var(--dorado);border-color:var(--dorado);color:var(--tinta);font-weight:600;}
+
+/* dropdown "Más" */
+.dropdown{position:relative;}
+.dropdown .caret{font-size:10px;opacity:0.8;}
+.dropdown-menu{
+  display:none;position:absolute;top:calc(100% + 6px);right:0;min-width:200px;
+  background:var(--panel-bg);border:1px solid var(--pergamino);border-radius:10px;
+  box-shadow:var(--sombra);overflow:hidden;z-index:40;padding:6px;
+}
+.dropdown-menu.show{display:block;}
+.dropdown-item{
+  display:block;width:100%;text-align:left;background:none;border:none;
+  padding:8px 10px;border-radius:7px;font-size:13px;color:var(--tinta);cursor:pointer;
+  font-family:'Montserrat',sans-serif;
+}
+.dropdown-item:hover{background:var(--pergamino);}
+.dropdown-item.danger{color:#a3423c;}
+.dropdown-item.danger:hover{background:#fbeae7;}
+.dropdown-sep{height:1px;background:var(--pergamino);margin:6px 4px;}
 
 /* search box in toolbar */
 .search-box{position:relative;}
@@ -354,7 +373,7 @@ legend{font-family:'Oswald',sans-serif;font-size:11.5px;text-transform:uppercase
       <div class="toolbar-group" aria-label="Edición">
         <button class="btn primary" id="btn-add-persona">+ Persona</button>
         <button class="btn" id="btn-add-union">+ Pareja / unión</button>
-        <button class="btn ghost" id="btn-autolayout">Reordenar automático</button>
+        <button class="btn ghost" id="btn-autolayout" title="Reordenar automático">Reordenar</button>
       </div>
 
       <span class="toolbar-divider"></span>
@@ -365,17 +384,22 @@ legend{font-family:'Oswald',sans-serif;font-size:11.5px;text-transform:uppercase
           <div id="search-results"></div>
         </div>
         <button class="btn ghost" id="btn-highlight" title="Resalta a las personas marcadas como doble o yaciente y atenúa al resto">Resaltar dobles/yacientes</button>
-        <button class="btn ghost" id="btn-print">Vista imprimible</button>
-        <button class="btn ghost" id="btn-guia">Guía de uso</button>
       </div>
 
       <span class="toolbar-divider"></span>
 
-      <div class="toolbar-group" aria-label="Archivo">
-        <button class="btn ghost" id="btn-export-imagen">Exportar imagen</button>
-        <button class="btn ghost" id="btn-export">Exportar .json</button>
-        <button class="btn ghost" id="btn-import">Importar .json</button>
-        <button class="btn ghost danger" id="btn-reset">Vaciar árbol</button>
+      <div class="dropdown" id="more-dropdown">
+        <button class="btn ghost" id="btn-more" aria-haspopup="true" aria-expanded="false">Más <span class="caret">▾</span></button>
+        <div class="dropdown-menu" id="more-menu">
+          <button class="dropdown-item" id="btn-guia">Guía de uso</button>
+          <button class="dropdown-item" id="btn-print">Vista imprimible</button>
+          <button class="dropdown-item" id="btn-export-imagen">Exportar imagen</button>
+          <div class="dropdown-sep"></div>
+          <button class="dropdown-item" id="btn-export">Exportar .json</button>
+          <button class="dropdown-item" id="btn-import">Importar .json</button>
+          <div class="dropdown-sep"></div>
+          <button class="dropdown-item danger" id="btn-reset">Vaciar árbol</button>
+        </div>
         <input type="file" id="file-import" accept="application/json" style="display:none;">
       </div>
     </div>

@@ -2051,6 +2051,28 @@ function wireToolbar(){
     renderArbol();
     toast("Árbol vaciado");
   });
+
+  // menú "Más": agrupa las acciones menos frecuentes para que la barra
+  // entre en una sola fila y le deje más espacio al árbol.
+  const moreBtn = document.getElementById("btn-more");
+  const moreMenu = document.getElementById("more-menu");
+  moreBtn.addEventListener("click",(ev)=>{
+    ev.stopPropagation();
+    const abierto = moreMenu.classList.toggle("show");
+    moreBtn.setAttribute("aria-expanded", abierto ? "true" : "false");
+  });
+  moreMenu.querySelectorAll(".dropdown-item").forEach(item=>{
+    item.addEventListener("click", ()=>{
+      moreMenu.classList.remove("show");
+      moreBtn.setAttribute("aria-expanded","false");
+    });
+  });
+  document.addEventListener("click",(ev)=>{
+    if(!ev.target.closest("#more-dropdown")) {
+      moreMenu.classList.remove("show");
+      moreBtn.setAttribute("aria-expanded","false");
+    }
+  });
 }
 
 function init(){
