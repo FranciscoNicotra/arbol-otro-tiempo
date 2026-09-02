@@ -895,6 +895,122 @@ function cerrarPanel(){
 }
 document.getElementById("overlay-scrim").addEventListener("click", cerrarPanel);
 
+/* ---- guía de uso, integrada en la app ---- */
+function contenidoGuia(){
+  return `
+    <section>
+      <div class="g-num">01</div>
+      <h4>Primeros pasos</h4>
+      <p class="g-intro">No hay que instalar ni registrarse en nada. Cargá personas y uniones para ir armando tu árbol — se guarda solo en este navegador a medida que trabajás.</p>
+      <div class="g-tip"><strong>¿Recién arrancás?</strong> Probá "Cargar ejemplo" desde la pantalla de bienvenida para ver un árbol ya armado, o "Empezar vacío" para ir directo con tu propia familia.</div>
+    </section>
+
+    <section>
+      <div class="g-num">02</div>
+      <h4>Moverte por el árbol</h4>
+      <table class="g-kv">
+        <tr><th>Acción</th><th>Mouse / computadora</th><th>Dedo / celular</th></tr>
+        <tr><td>Mover el árbol</td><td>Clic sostenido y arrastrar</td><td>Arrastrar con un dedo</td></tr>
+        <tr><td>Acercar / alejar</td><td>Rueda del mouse, o botones + / −</td><td>Pellizcar con dos dedos, o botones + / −</td></tr>
+        <tr><td>Ver todo el árbol</td><td colspan="2">Botón con la flechita en las cuatro puntas</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <div class="g-num">03</div>
+      <h4>Agregar una persona</h4>
+      <p class="g-intro">Tocá el botón dorado <strong>"+ Persona"</strong>.</p>
+      <ol class="g-steps">
+        <li><span class="g-n">1</span><p>Completá al menos el <strong>nombre o el apellido</strong> — es lo único obligatorio. El resto lo podés dejar en blanco y completar después.</p></li>
+        <li><span class="g-n">2</span><p>Si no sabés la fecha exacta de muerte, hay un campo para poner <strong>solo el año</strong>, con un tilde de "es probable".</p></li>
+        <li><span class="g-n">3</span><p>Las <strong>notas</strong> se comparan automáticamente entre todas las personas — la app avisa si dos historias se parecen mucho.</p></li>
+        <li><span class="g-n">4</span><p>Marcá <strong>"Protagonista"</strong> en la persona sobre la que gira el árbol (solo puede haber una) — activa la detección de dobles y yacientes.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="g-num">04</div>
+      <h4>Uniones e hijos</h4>
+      <p class="g-intro">Con al menos dos personas cargadas, tocá <strong>"+ Pareja / unión"</strong>, elegí si fue matrimonio o pareja, y sumá a sus hijos/as al final del formulario.</p>
+      <div class="g-tip"><strong>¿Ya existe la unión?</strong> No crees una nueva — tocá directamente la línea que conecta a la pareja en el dibujo del árbol para editarla.</div>
+    </section>
+
+    <section>
+      <div class="g-num">05</div>
+      <h4>Los símbolos del árbol</h4>
+      <div class="g-symbols">
+        <div class="g-symbol"><svg width="26" height="20"><polygon points="13,2 24,18 2,18" fill="none" stroke="#073B5C" stroke-width="1.6"/></svg><div class="g-label"><b>Triángulo</b><span>Hombre</span></div></div>
+        <div class="g-symbol"><svg width="26" height="20"><circle cx="13" cy="10" r="8" fill="none" stroke="#073B5C" stroke-width="1.6"/></svg><div class="g-label"><b>Círculo</b><span>Mujer</span></div></div>
+        <div class="g-symbol"><svg width="26" height="20"><rect x="4" y="2" width="18" height="16" fill="none" stroke="#C78B2B" stroke-width="1.8"/></svg><div class="g-label"><b>Marco dorado</b><span>Protagonista (Yo)</span></div></div>
+        <div class="g-symbol"><svg width="26" height="20"><polygon points="13,2 24,18 2,18" fill="none" stroke="#073B5C" stroke-width="1.6"/><line x1="5" y1="5" x2="21" y2="16" stroke="#073B5C" stroke-width="1.4"/></svg><div class="g-label"><b>Línea diagonal</b><span>Fallecido/a</span></div></div>
+        <div class="g-symbol"><svg width="40" height="18"><line x1="2" y1="9" x2="38" y2="9" stroke="#073B5C" stroke-width="1.4"/><circle cx="15" cy="9" r="6" fill="none" stroke="#C78B2B" stroke-width="1.4"/><circle cx="24" cy="9" r="6" fill="none" stroke="#C78B2B" stroke-width="1.4"/></svg><div class="g-label"><b>Anillos entrelazados</b><span>Matrimonio (con fecha)</span></div></div>
+        <div class="g-symbol"><svg width="30" height="14"><line x1="2" y1="7" x2="28" y2="7" stroke="#073B5C" stroke-width="1.4"/></svg><div class="g-label"><b>Línea simple</b><span>Pareja (sin casamiento)</span></div></div>
+        <div class="g-symbol"><svg width="30" height="14"><line x1="2" y1="7" x2="28" y2="7" stroke="#073B5C" stroke-width="1.4"/><line x1="12" y1="1" x2="16" y2="13" stroke="#073B5C" stroke-width="1.4"/><line x1="16" y1="1" x2="20" y2="13" stroke="#073B5C" stroke-width="1.4"/></svg><div class="g-label"><b>Doble raya</b><span>Separación / divorcio</span></div></div>
+        <div class="g-symbol"><svg width="18" height="18"><line x1="8" y1="2" x2="5" y2="16" stroke="#073B5C" stroke-width="1.4"/><line x1="12" y1="2" x2="9" y2="16" stroke="#073B5C" stroke-width="1.4"/></svg><div class="g-label"><b>Dos rayas cortas</b><span>Aborto</span></div></div>
+        <div class="g-symbol"><svg width="26" height="18"><polyline points="2,16 13,2 24,16" fill="none" stroke="#073B5C" stroke-width="1.4"/></svg><div class="g-label"><b>Techo doble</b><span>Gemelos / mellizos</span></div></div>
+        <div class="g-symbol"><svg width="26" height="20"><circle cx="13" cy="10" r="8" fill="#fff" stroke="#C78B2B" stroke-width="2"/><circle cx="20" cy="4" r="5" fill="#C78B2B"/></svg><div class="g-label"><b>Borde dorado + "D"</b><span>Doble</span></div></div>
+        <div class="g-symbol"><svg width="26" height="20"><circle cx="13" cy="10" r="8" fill="#172B36" stroke="#C78B2B" stroke-width="2"/><circle cx="20" cy="4" r="5" fill="#C78B2B"/></svg><div class="g-label"><b>Relleno oscuro + "Y"</b><span>Yaciente</span></div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="g-num">06</div>
+      <h4>Dobles y yacientes</h4>
+      <p class="g-intro">La app los detecta <strong>sola</strong> — pero solo si marcaste a alguien como protagonista.</p>
+      <div class="g-card">
+        <h5><span class="badge doble">Doble</span></h5>
+        <p>Alguien que parece "repetir" al protagonista: comparte su nombre, nació muy cerca de la misma fecha, o nació en el mismo mes que otro hermano/a en un punto equivalente de la familia.</p>
+      </div>
+      <div class="g-card">
+        <h5><span class="badge yaciente">Yaciente</span></h5>
+        <p>Un doble que además <strong>murió antes de que naciera el protagonista</strong>.</p>
+      </div>
+      <div class="g-tip">También podés marcar a alguien como doble <strong>a mano</strong> (con una nota), desde su ficha.</div>
+    </section>
+
+    <section>
+      <div class="g-num">07</div>
+      <h4>Buscar y resaltar</h4>
+      <ol class="g-steps">
+        <li><span class="g-n">1</span><p>Escribí un nombre en <strong>"Buscar persona…"</strong> — la vista se centra sola en esa persona.</p></li>
+        <li><span class="g-n">2</span><p><strong>"Resaltar dobles/yacientes"</strong> atenúa el resto del árbol y deja bien visibles solo esos casos.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="g-num">08</div>
+      <h4>Guardar y compartir con la familia</h4>
+      <p class="g-intro">Tu árbol se guarda <strong>solo en tu navegador</strong>. Otro familiar que abra la app en su computadora <strong>no ve tus datos</strong> — cada uno tiene su propia copia.</p>
+      <ol class="g-steps">
+        <li><span class="g-n">1</span><p>Tocá <strong>"Exportar .json"</strong> — se descarga un archivo con todos los datos.</p></li>
+        <li><span class="g-n">2</span><p>Se lo mandás a tu familiar (mail, WhatsApp como documento).</p></li>
+        <li><span class="g-n">3</span><p>Esa persona toca <strong>"Importar .json"</strong> y elige el archivo.</p></li>
+        <li><span class="g-n">4</span><p>Si agrega algo, exporta su .json actualizado y te lo devuelve para reimportar.</p></li>
+      </ol>
+      <div class="g-tip"><strong>No es en tiempo real</strong> — es más como pasarse un cuaderno. Guardá siempre una copia del .json en un lugar seguro.</div>
+    </section>
+
+    <section>
+      <div class="g-num">09</div>
+      <h4>Exportar imagen o imprimir</h4>
+      <div class="g-card"><h5>Exportar imagen</h5><p>Genera una foto (PNG) de todo el árbol, lista para mandar por WhatsApp.</p></div>
+      <div class="g-card"><h5>Vista imprimible</h5><p>Acomoda el árbol en una hoja grande (A3 apaisado) y abre el diálogo de impresión — también sirve para "imprimir como PDF".</p></div>
+    </section>
+
+    <section>
+      <div class="g-num">10</div>
+      <h4>Preguntas frecuentes</h4>
+      <div class="g-faq">
+        <details><summary>¿Se guardó todo al cerrar la app?</summary><p>Sí, siempre que la abras desde el mismo navegador y dispositivo. Igual conviene exportar un .json de tanto en tanto como respaldo.</p></details>
+        <details><summary>El árbol se ve desordenado, ¿cómo lo acomodo?</summary><p>Tocá "Reordenar automático" — recalcula las posiciones para que las parejas y sus hijos queden centrados.</p></details>
+        <details><summary>¿Puedo mover a una persona a mano?</summary><p>Sí, arrastrala en el dibujo. Si en algún momento se ve rara, "Reordenar automático" la acomoda sola.</p></details>
+        <details><summary>Importé un archivo y algo se ve raro</summary><p>La app revisa el archivo al importarlo y corrige sola los problemas más comunes, avisándote qué corrigió.</p></details>
+        <details><summary>¿Necesito internet para usarla?</summary><p>No, salvo la primera vez (para las tipografías). Después funciona sin conexión.</p></details>
+      </div>
+    </section>
+  `;
+}
+
 function abrirDetalle(personaId){
   selectedId = personaId;
   const p = getPersona(personaId);
@@ -1169,6 +1285,17 @@ const OT = {};
 window.OT = OT;
 
 OT.cerrarPanel = cerrarPanel;
+
+OT.abrirGuia = function(){
+  document.getElementById("guide-body").innerHTML = contenidoGuia();
+  document.getElementById("guide-scrim").classList.add("show");
+};
+OT.cerrarGuia = function(){
+  document.getElementById("guide-scrim").classList.remove("show");
+};
+document.getElementById("guide-scrim").addEventListener("click",(ev)=>{
+  if(ev.target.id==="guide-scrim") OT.cerrarGuia();
+});
 
 OT.agregarSintoma = function(){
   const input = document.getElementById("f-sintoma-nuevo");
@@ -1909,6 +2036,7 @@ function wireToolbar(){
   document.getElementById("btn-highlight").addEventListener("click", toggleResaltarEspeciales);
   document.getElementById("btn-export-imagen").addEventListener("click", exportarImagenPNG);
   document.getElementById("btn-print").addEventListener("click", vistaImprimible);
+  document.getElementById("btn-guia").addEventListener("click", OT.abrirGuia);
   document.getElementById("btn-export").addEventListener("click", exportarJSON);
   document.getElementById("btn-import").addEventListener("click", ()=>document.getElementById("file-import").click());
   document.getElementById("file-import").addEventListener("change",(ev)=>{
